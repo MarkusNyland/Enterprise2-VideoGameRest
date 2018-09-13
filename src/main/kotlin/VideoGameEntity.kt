@@ -4,7 +4,7 @@ import javax.validation.constraints.Size
 
 
 @Entity
-class VideoGames (
+class VideoGameEntity (
 
 
 
