@@ -1,12 +1,10 @@
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
-
+//1
 
 @Entity
 class VideoGameEntity (
-
-
 
         /**
          * In Spring we can use JPA, and so have @Entity objects to model our database.

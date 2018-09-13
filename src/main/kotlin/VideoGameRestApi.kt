@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import javax.validation.ConstraintViolationException
 import javax.validation.Valid
-
+//3
 
 @Api(value = "/videoGames", description = "Handling of creating and retrieving news")
 @RequestMapping(
