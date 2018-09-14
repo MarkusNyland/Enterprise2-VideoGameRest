@@ -63,4 +63,26 @@ class VGRestApi {
         return ResponseEntity.status(200).build()
 
     }
+
+    @ApiOperation("Delete a game with a specific name")
+    @DeleteMapping(path = ["/{name}"])
+    fun deleteGame(
+            @ApiParam("Name of a game")
+            @PathVariable("name")
+            pathName: String?): ResponseEntity<Any>{
+
+        val id: Long
+        try {
+            id = crud.findByName(pathName!!).id!!
+        } catch (e: Exception) {
+            return ResponseEntity.status(400).build()
+        }
+
+        if (!crud.existsById(id)) {
+            return ResponseEntity.status(404).build()
+        }
+
+        crud.deleteById(id)
+        return ResponseEntity.status(204).build()
+    }
 }

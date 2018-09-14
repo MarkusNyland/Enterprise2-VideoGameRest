@@ -5,6 +5,9 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 import javax.persistence.EntityManager
 import org.springframework.transaction.annotation.Transactional
+import javax.persistence.TypedQuery
+
+
 
 //2
 @Repository
@@ -14,7 +17,7 @@ interface VGRepository : CrudRepository<VGEntity,Long>, VGRepositoryCustom {
 
     fun findAllByName(name: String): Iterable<VGEntity>
 
-    fun findByName(name: String): Iterable<VGEntity>
+    fun findByName(name: String): VGEntity
 
 }
 
@@ -22,6 +25,7 @@ interface VGRepository : CrudRepository<VGEntity,Long>, VGRepositoryCustom {
 interface VGRepositoryCustom {
 
     fun createVideoGame(name: String, releaseDate: String, genre: String): Long
+
 }
 
 @Repository
