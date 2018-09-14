@@ -1,6 +1,8 @@
+package VideoGame
+
 import io.swagger.annotations.ApiModelProperty
 
-data class Dto (
+data class VGDto (
 
         @ApiModelProperty("Id of the game")
         var id: String? = null,

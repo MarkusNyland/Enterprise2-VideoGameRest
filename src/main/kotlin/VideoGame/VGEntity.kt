@@ -1,13 +1,15 @@
+package VideoGame
+
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 //1
 
 @Entity
-class VideoGameEntity (
+class VGEntity (
 
         /**
-         * In Spring we can use JPA, and so have @Entity objects to model our database.
+         * In Spring we can use JPA, and so have @VGEntity objects to model our database.
          *
          * Note how in Kotlin we can avoid most of the boilerplate, like getters/setters.
          *
