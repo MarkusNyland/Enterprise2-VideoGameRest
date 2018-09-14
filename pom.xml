@@ -20,6 +20,7 @@
         <version.gson>2.8.1</version.gson>
         <version.junit>4.12</version.junit>
         <version.restassured>3.1.0</version.restassured>
+        <version.mvn-compiler-plugin>3.7.0</version.mvn-compiler-plugin>
     </properties>
 
     <build>
@@ -97,6 +98,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.mvn-compiler-plugin}</version>
                 <executions>
                     <!-- Replacing default-compile as it is treated specially by maven -->
                     <execution>

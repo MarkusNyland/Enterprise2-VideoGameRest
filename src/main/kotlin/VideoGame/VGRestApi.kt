@@ -23,7 +23,7 @@ class VGRestApi {
 
     @ApiOperation("Get all the games")
     @GetMapping
-    fun getAllGames(
+    fun get(
             @ApiParam("The games genre")
             @RequestParam("genre", required = false)
             genre: String?): ResponseEntity<List<VGDto>> {
@@ -36,6 +36,26 @@ class VGRestApi {
 
         return ResponseEntity.ok(VGConverter.transform(list))
     }
+
+    @ApiOperation("Get a game by name")
+    @GetMapping(path = ["/{name}"])
+    fun getGame(
+            @ApiParam("Name of a game")
+            @PathVariable("name")
+            pathName: String?) : ResponseEntity<VGDto> {
+
+        val dto: VGEntity
+        try {
+            val id = crud.findByName(pathName!!).id!!
+            dto = crud.findById(id).get()
+        }
+            catch (e: Exception) {
+            return ResponseEntity.status(400).build()
+        }
+
+        return ResponseEntity.ok(VGConverter.transform(dto))
+    }
+
 
     @ApiOperation("Create a game")
     @PostMapping
@@ -52,15 +72,14 @@ class VGRestApi {
             return ResponseEntity.status(400).build()
         }
 
-        val id: Long?
         try {
-            id = crud.createVideoGame(dto.name!!, dto.releaseDate!!, dto.genre!!)
+            crud.createVideoGame(dto.name!!, dto.releaseDate!!, dto.genre!!)
         }
         catch (e: Exception) {
             throw e
         }
 
-        return ResponseEntity.status(200).build()
+        return ResponseEntity.status(201).build()
 
     }
 
@@ -69,17 +88,13 @@ class VGRestApi {
     fun deleteGame(
             @ApiParam("Name of a game")
             @PathVariable("name")
-            pathName: String?): ResponseEntity<Any>{
+            pathName: String?): ResponseEntity<VGDto>{
 
         val id: Long
         try {
             id = crud.findByName(pathName!!).id!!
         } catch (e: Exception) {
             return ResponseEntity.status(400).build()
-        }
-
-        if (!crud.existsById(id)) {
-            return ResponseEntity.status(404).build()
         }
 
         crud.deleteById(id)
