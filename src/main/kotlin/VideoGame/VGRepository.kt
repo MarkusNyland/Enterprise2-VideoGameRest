@@ -12,6 +12,10 @@ interface VGRepository : CrudRepository<VGEntity,Long>, VGRepositoryCustom {
 
     fun findAllByGenre(genre: String): Iterable<VGEntity>
 
+    fun findAllByName(name: String): Iterable<VGEntity>
+
+    fun findByName(name: String): Iterable<VGEntity>
+
 }
 
 @Transactional
@@ -28,7 +32,9 @@ class VGRepositoryImpl : VGRepositoryCustom {
     private lateinit var em: EntityManager
 
     override fun createVideoGame(name: String, releaseDate: String, genre: String): Long {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val entity = VGEntity(name, releaseDate, genre)
+        em.persist(entity)
+        return entity.id!!
     }
 
 }
