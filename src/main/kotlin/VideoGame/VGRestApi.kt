@@ -94,7 +94,7 @@ class VGRestApi {
         try {
             id = crud.findByName(pathName!!).id!!
         } catch (e: Exception) {
-            return ResponseEntity.status(400).build()
+            return ResponseEntity.status(404).build()
         }
 
         crud.deleteById(id)
