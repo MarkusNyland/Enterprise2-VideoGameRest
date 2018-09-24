@@ -12,12 +12,12 @@ import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
+
 @SpringBootApplication(scanBasePackages = ["VideoGame"])
 @EnableJpaRepositories(basePackages = ["VideoGame"])
 @EntityScan(basePackages = ["VideoGame"])
 @EnableSwagger2 //needed to enable Swagger
 class VGRestApplication {
-
 
     /*
         Bean used to configure Swagger documentation
